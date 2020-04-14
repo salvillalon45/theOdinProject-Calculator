@@ -74,6 +74,35 @@ button:hover {
   text-decoration: none;
   color: white;
 }
+.display-results {
+  display: flex;
+  background-color: #bcbd95;
+}
+
+/* #display {
+  width: 373px;
+  font-size: 26px;
+  text-align: right;
+  background-color: #bcbd95;
+  float: left;
+} */
+
+input {
+  outline: 0;
+  position: relative;
+  left: 5px;
+  top: 5px;
+  border: 0;
+  color: #495069;
+  background-color: #fff;
+  border-radius: 4px;
+  width: 60px;
+  height: 50px;
+  float: left;
+  margin: 5px;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
 
 /*
   CSS Varialbles. This turned out to be really useful! I learned from here:
