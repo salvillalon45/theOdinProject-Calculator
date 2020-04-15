@@ -74,18 +74,16 @@ button:hover {
   text-decoration: none;
   color: white;
 }
-.display-results {
-  display: flex;
+.calculator-display {
   background-color: #bcbd95;
+  height: 50px;
 }
 
-/* #display {
-  width: 373px;
-  font-size: 26px;
-  text-align: right;
-  background-color: #bcbd95;
-  float: left;
-} */
+.display-current, .display-results {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 20px;
+}
 
 input {
   outline: 0;
