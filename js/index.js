@@ -10,6 +10,7 @@ let previousNum = ""
 let operator= "";
 let debug = 0;
 let equalFlag = 0;
+let moreThanOneOperatorFlag = 1
 
 function displayHistory() {
   // This function is used to display the previous calculations the user has made. It will be activated everytime the
@@ -76,9 +77,8 @@ function selectEqual(equal) {
   currentNum = result;
   displayCurrentCalculations();
 
-  // Clear the numbers for the next calculation
-  currentNum = "";
-  previousNum = "";
+  // Save the result for the next calculation
+  previousNum = result;
 }
 
 function printNums() {
@@ -93,13 +93,19 @@ function selectOperator(newOperator) {
   // For when user enters an operator
   debug === 1 && console.log("Inside selectOperator()");
 
-  operator = newOperator;
+  // This is to support more than one operator
+  if (moreThanOneOperatorFlag === 1) {
+    selectEqual();
+  }
 
+  operator = newOperator;
   // Store the previous number the user entered
   previousNum = currentNum;
 
   // We want to clear the currentNum for the next number the user will pick
   currentNum = "";
+
+  moreThanOneOperatorFlag = 1
 }
 
 function clearDisplayResults() {
@@ -117,7 +123,7 @@ function selectUtil(util) {
 
   if (util === "AC") {
     // Clear everything. This means reset the global variables
-    debug === 1 & console.log("clearing calculator");
+    debug === 1 && console.log("clearing calculator");
     currentNum = "";
     previousNum = "";
     operator = "";
@@ -126,14 +132,14 @@ function selectUtil(util) {
   }
   else if (util === "DEL") {
     // Remove the recent number they inputed
-    debug === 1 & console.log("removing most recent number");
+    debug === 1 && console.log("removing most recent number");
 
     currentNum = "";
     displayCurrentCalculations();
   }
   else if (util === "%") {
     // Turn the number into a decimal
-    debug === 1 & console.log("turning number into decimal");
+    debug === 1 && console.log("turning number into decimal");
 
     currentNum = currentNum / 100;
     displayCurrentCalculations();
