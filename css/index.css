@@ -74,16 +74,30 @@ button:hover {
   text-decoration: none;
   color: white;
 }
-.calculator-display {
+
+.display-current {
   background-color: #bcbd95;
   height: 50px;
-}
-
-.display-current, .display-results {
   display: flex;
   justify-content: flex-end;
   font-size: 20px;
 }
+
+.display-results {
+  background-color: #bcbd95;
+  overflow:auto;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  font-size: 20px;
+  flex-direction: column;
+}
+
+.display-results p {
+  margin-bottom: -10px;
+}
+
+
 
 input {
   outline: 0;
@@ -100,30 +114,4 @@ input {
   margin: 5px;
   font-size: 20px;
   margin-bottom: 15px;
-}
-
-/*
-  CSS Varialbles. This turned out to be really useful! I learned from here:
-  https://medium.com/@fionnachan/dynamic-number-of-rows-and-columns-with-css-grid-layout-and-css-variables-cb8e8381b6f2
-*/
-:root {
-  --rowNum: 4;
-  --colNum: 5;
-  --randomBackgroundColor: #2196F3;
-}
-
-/* This represents the container that contains the entire grid */
-.grid-container {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(var(--colNum), auto);
-  background-color: var(--randomBackgroundColor);
-  padding 10px;
-}
-
-/* This represents on box in the container */
-.grid-box {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
 }
