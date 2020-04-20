@@ -8,9 +8,9 @@ let currentNum = "";
 let displayResultNum = "";
 let previousNum = ""
 let operator= "";
-let debug = 0;
+let debug = 1;
 let equalFlag = 0;
-let moreThanOneOperatorFlag = 1
+let moreThanOneOperatorFlag = 0
 
 function displayHistory() {
   // This function is used to display the previous calculations the user has made. It will be activated everytime the
@@ -69,15 +69,47 @@ function selectEqual(equal) {
 
   equalFlag = 1;
 
+  performCalculationForEqual();
+}
+
+function performCalculationForEqual() {
+  // This function will be called when the user just performs calculation on two numbers such as 2 + 2
+  debug === 1 && console.log("Inside performCalculationForEqual()");
+
+  // This is needed for the display previous results. We want to keep the currentNum before it gets overwritten
+  displayResultNum = currentNum;
+
+  // Overwrite currentNum to the result
+  let result = operate();
+  console.log("What is result");
+  currentNum = result;
+  displayCurrentCalculations();
+
+  // Overwrite for next calculation
+  currentNum = "";
+  previousNum = "";
+  operator = "";
+
+  printNums();
+  moreThanOneOperatorFlag = 0;
+}
+
+function performCalculationForMoreThanOneOperator() {
+  // This function will be called when the user just performs calculation on more than two numbers like 2 + 2 - 4
+  debug === 1 && console.log("Inside performCalculationForMoreThanOneOperator()");
+
   // This is needed for the display previous results. We want to keep the currentNum before it gets overwritten
   displayResultNum = currentNum;
 
   // Overwrite currentNum to the result
   let result = operate();
   currentNum = result;
-  displayCurrentCalculations();
 
-  // Save the result for the next calculation
+  // Display the information
+  displayCurrentCalculations();
+  displayHistory();
+
+  // For the next calcuation
   previousNum = result;
 }
 
@@ -94,8 +126,8 @@ function selectOperator(newOperator) {
   debug === 1 && console.log("Inside selectOperator()");
 
   // This is to support more than one operator
-  if (moreThanOneOperatorFlag === 1) {
-    selectEqual();
+  if (moreThanOneOperatorFlag >= 1) {
+    performCalculationForMoreThanOneOperator();
   }
 
   operator = newOperator;
@@ -105,7 +137,8 @@ function selectOperator(newOperator) {
   // We want to clear the currentNum for the next number the user will pick
   currentNum = "";
 
-  moreThanOneOperatorFlag = 1
+  // Increase the flag. If the flag is more than one that means that they are chaining expressions
+  moreThanOneOperatorFlag++;
 }
 
 function clearDisplayResults() {
